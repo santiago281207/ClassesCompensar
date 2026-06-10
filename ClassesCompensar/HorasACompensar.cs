@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace CompensacaoHoras
 {
-    internal class HorasCompensadas : Aluno
+    public class HorasACompensar : Aluno
     {
         private string m_discip;
         private int m_trimestre;
         private int m_ano;
         private string m_tipo;
-        private DateTime m_data;
-        private DateTime m_horaIniciar;
-        private DateTime m_horaFinal;
+        private int m_compensar;
 
         public string Disciplina
         { 
@@ -41,22 +38,11 @@ namespace CompensacaoHoras
             set { m_tipo = value; }
         }
 
-        public DateTime Data
+        public int Compensar
         { 
-            get { return m_data; }
-            set { m_data = value; }
+            get { return m_compensar; }
+            set { m_compensar = value; }
         }
 
-        public DateTime HoraIniciar
-        { 
-            get { return m_horaIniciar; }
-            set { m_horaIniciar = value; }
-        }
-
-        public DateTime HoraFinal
-        { 
-            get { return m_horaFinal; }
-            set { m_horaFinal = value; }
-        }
     }
 }

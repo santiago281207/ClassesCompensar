@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aluno.cs" />
-    <Compile Include="CompensacaoHoras.cs" />
+    <Compile Include="Registos.cs" />
     <Compile Include="HorasCompensadas.cs" />
-    <Compile Include="HorasCompensar.cs" />
+    <Compile Include="HorasACompensar.cs" />
     <Compile Include="Necessidade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

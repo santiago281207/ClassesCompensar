@@ -14,6 +14,7 @@ namespace CompensacaoHoras
         public Disciplina Disciplina
         {
             get { return m_disciplina; }
+            set { m_disciplina = value; }
         }
 
 
@@ -22,6 +23,7 @@ namespace CompensacaoHoras
         public int Trimestre
         {
             get { return m_trimestre; }
+            set { m_trimestre = value; }
         }
 
 
@@ -30,13 +32,15 @@ namespace CompensacaoHoras
         public string AnoLetivo
         {
             get { return m_anoLetivo; }
+            set { m_anoLetivo = value; }
         }
-        private string m_tipoCompensacao;
 
+        private string m_tipoCompensacao;
 
         public string TipoCompensacao
         {
             get { return m_tipoCompensacao; }
+            set { m_tipoCompensacao = value; }
         }
 
 
