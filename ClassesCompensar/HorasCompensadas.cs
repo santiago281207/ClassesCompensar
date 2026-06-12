@@ -9,7 +9,7 @@ namespace CompensacaoHoras
 {
     internal class HorasCompensadas : Aluno
     {
-        private string m_discip;
+        private Disciplina m_discip;
         private int m_trimestre;
         private int m_ano;
         private string m_tipo;
@@ -17,7 +17,7 @@ namespace CompensacaoHoras
         private DateTime m_horaIniciar;
         private DateTime m_horaFinal;
 
-        public string Disciplina
+        public Disciplina Disciplina
         { 
             get { return m_discip; }
             set { m_discip = value; }

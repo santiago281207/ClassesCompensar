@@ -8,13 +8,13 @@ namespace CompensacaoHoras
 {
     public class HorasACompensar : Aluno
     {
-        private string m_discip;
+        private Disciplina m_discip;
         private int m_trimestre;
         private int m_ano;
         private string m_tipo;
         private int m_compensar;
 
-        public string Disciplina
+        public Disciplina Disciplina
         { 
             get { return m_discip; }
             set { m_discip = value; }

@@ -23,6 +23,7 @@ namespace CompensacaoHoras
     }
     public class Aluno
     {
+        private int dim = 100;
         private int m_num;
 
         public int Numero
@@ -44,7 +45,34 @@ namespace CompensacaoHoras
             set { m_turma = value; }
         }
 
-        private HorasACompensar[] m_compensar;
+        private HorasACompensar[] m_compensar = new HorasACompensar[100];
+
+        public int AddCompensar(int index, Disciplina disciplina, string tipo)
+        {
+            if (index >= dim || Enum.IsDefined(typeof(Disciplina), disciplina) == false)
+            {
+                return 0;
+            }else
+            {
+                m_compensar[index].Disciplina = disciplina;
+                m_compensar[index].Tipo = tipo;
+            }
+
+            return 1;
+        }
+        public int AddCompensar(int index, int trimestre, int ano, int horas)
+        {
+            if (index >= dim)
+            {
+                return 0;
+            }
+
+            m_compensar[index].Trimestre = trimestre;
+            m_compensar[index].Ano = ano;
+            m_compensar[index].Compensar = horas;
+
+            return 1;
+        }
         private int m_qtdCompensar;
 
         public int ACompensar
@@ -53,7 +81,48 @@ namespace CompensacaoHoras
             set { m_qtdCompensar = value; }
         }
 
-        private HorasCompensadas[] m_compensadas;
+        private HorasCompensadas[] m_compensadas = new HorasCompensadas[100];
+
+        public int AddCompensadas(int index,DateTime data,DateTime horaIniciar,DateTime horaFinal)
+        {
+            if (index >= dim)
+            {
+                return 0;
+            }
+
+            m_compensadas[index].Data = data;
+            m_compensadas[index].HoraIniciar = horaIniciar;
+            m_compensadas[index].HoraFinal = horaFinal;
+
+            return 1;
+        }
+
+        public int AddCompensadas(int index, Disciplina disciplina, string tipo)
+        {
+            if (index >= dim || Enum.IsDefined(typeof(Disciplina),disciplina) == false)
+            {
+                return 0;
+            }
+
+            m_compensadas[index].Disciplina = disciplina;
+            m_compensadas[index].Tipo = tipo;
+
+            return index + 1;
+        }
+
+        public int AddCompensadas(int index, int trimestre, int ano)
+        {
+            if (index >= dim)
+            {
+                return 0;
+            }
+
+            m_compensadas[index].Trimestre = trimestre;
+            m_compensadas[index].Ano = ano;
+
+            return index + 1;
+        }
+
         private int m_qtdCompensadas;
 
         public int  Compensadas
