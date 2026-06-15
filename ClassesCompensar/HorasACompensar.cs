@@ -10,7 +10,7 @@ namespace CompensacaoHoras
     {
         private Disciplina m_discip;
         private int m_trimestre;
-        private int m_ano;
+        private int m_anoLetivo;
         private string m_tipo;
         private int m_compensar;
 
@@ -28,8 +28,8 @@ namespace CompensacaoHoras
 
         public int Ano
         { 
-            get { return m_ano; }
-            set { m_ano = value; }
+            get { return m_anoLetivo; }
+            set { m_anoLetivo = value; }
         }
 
         public string Tipo

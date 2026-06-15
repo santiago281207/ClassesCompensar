@@ -11,7 +11,7 @@ namespace CompensacaoHoras
     {
         private Disciplina m_discip;
         private int m_trimestre;
-        private int m_ano;
+        private int m_anoLetivo;
         private string m_tipo;
         private DateTime m_data;
         private DateTime m_horaIniciar;
@@ -31,8 +31,8 @@ namespace CompensacaoHoras
 
         public int Ano
         { 
-            get { return m_ano; }
-            set { m_ano = value; }
+            get { return m_anoLetivo; }
+            set { m_anoLetivo = value; }
         }
 
         public string Tipo
