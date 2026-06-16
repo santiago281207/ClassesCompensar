@@ -13,30 +13,55 @@ namespace CompensacaoHoras
         private int m_qtdAlunos;
         private int m_dim = 30;
 
-        public int ExisteCheck(int num)
+        public string NameAluno(int index)
         {
-            foreach (Aluno aluno in m_alunos)
+            return m_alunos[index].Nome;
+        }
+        public Aluno AlunoCheck(int indexAluno)
+        {
+            return m_alunos[indexAluno];
+        }
+
+        public int IndexPorNome(string nome)
+        {
+            for(int i = 0;i < m_qtdAlunos;i++)
             {
-                if(aluno.Numero == num)
+                if (m_alunos[i].Nome == nome)
                 {
-                    return -1;
+                    return i;
                 }
             }
+            return -1;
+        }
+
+        
+
+        public int ExisteCheck(int num,string nome)
+        {
+            if (m_qtdAlunos == 0)
+                return 0;
+
+            for (int i = 0; i < m_qtdAlunos; i++)
+            {
+                if (m_alunos[i] != null && m_alunos[i].Numero == num || m_alunos[i] != null && m_alunos[i].Nome == nome)
+                    return -1;
+            }
+
             return 0;
         }
 
-        public void Add(Aluno aluno)
+        public int Add(Aluno aluno)
         {
-            if(m_qtdAlunos <= 29)
-            {
-                throw new Exception("Quantidade máxima de alunos atingida!");
-            }else if(ExisteCheck(aluno.Numero) == -1)
-            {
-                throw new Exception("Aluno já existente");
-            }else
-            {
-                m_alunos = m_alunos.Append(aluno).ToArray();
-            }
+            if (m_qtdAlunos == m_dim)
+                return 0;
+
+            if (ExisteCheck(aluno.Numero,aluno.Nome) == -1)
+                return -1;
+
+            m_alunos[m_qtdAlunos] = aluno;
+            m_qtdAlunos++;
+
+            return 1;
         }
 
 

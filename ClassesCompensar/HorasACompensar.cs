@@ -40,8 +40,8 @@ namespace CompensacaoHoras
 
         public int Compensar
         { 
-            get { return m_compensar; }
-            set { m_compensar = value; }
+            get { return m_compensar; } //Em minutos
+            set { m_compensar = value * 60; }
         }
 
     }

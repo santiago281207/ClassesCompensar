@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-
 namespace CompensacaoHoras
 {
     public enum Disciplina
@@ -23,34 +22,88 @@ namespace CompensacaoHoras
     }
     public class Aluno
     {
+        private HorasACompensar[] m_compensar = new HorasACompensar[100];
+        private HorasCompensadas[] m_compensadas = new HorasCompensadas[100];
         private int dim = 100;
         private int m_num;
+        private string m_nome;
+        private string m_turma;
+        private int m_qtdCompensar;
+        private int m_qtdCompensadas;
 
+        public int CheckRegistoCompensar(int indexAluno,Disciplina disciplina,int trimestre,string anoLetivo,string tipo)
+        {
+            for(int i = 0;i < m_qtdCompensar;i++)
+            {
+                if(i == indexAluno)
+                {
+                    continue;
+                }else
+                {
+                    if (m_compensar[i].Disciplina == m_compensar[indexAluno].Disciplina && 
+                        m_compensar[i].Trimestre == m_compensar[indexAluno].Trimestre && 
+                        m_compensar[i].Ano   == m_compensar[indexAluno].Ano &&
+                        m_compensar[i].Tipo == m_compensar[indexAluno].Tipo)
+                    {
+                        return -1;
+                    }
+                }
+            }
+            return 0;
+        }
+
+        internal HorasACompensar CheckCompensar(int index)
+        {
+            return m_compensar[index];
+        }
+
+        internal HorasCompensadas CheckCompensadas(int index)
+        {
+            return m_compensadas[index];
+        }
+        
         public int Numero
         {
             get { return m_num; }
             set { m_num = value; }
         }
-        private string m_nome;
+        
         public string Nome
         {
             get { return m_nome; }
             set { m_nome = value; }
         }
 
-        private string m_turma;
+        
         public string Turma
         {
             get { return m_turma; }
             set { m_turma = value; }
         }
 
-        private HorasACompensar[] m_compensar = new HorasACompensar[100];
+        public void CriarCompensar(int index)
+        {
+            if(CheckCompensar(index) == null)
+            {
+                HorasACompensar horasCompensar = new HorasACompensar();
+                m_compensar[index] = horasCompensar;
+            }
+        }
+
+        public void CriarCompensadas(int index)
+        {
+            if (CheckCompensadas(index) == null)
+            {
+                HorasCompensadas horasCompensadas = new HorasCompensadas();
+                m_compensadas[index] = horasCompensadas;
+            }
+        }
 
         public int AddCompensar(int index, Disciplina disciplina, string tipo)
         {
             if (index >= dim || Enum.IsDefined(typeof(Disciplina), disciplina) == false)
             {
+                CriarCompensar(index);
                 return 0;
             }else
             {
@@ -60,33 +113,33 @@ namespace CompensacaoHoras
 
             return 1;
         }
-        public int AddCompensar(int index, int trimestre, int ano, int horas)
+        public int AddCompensar(int index, int trimestre, string anoLetivo, int horas)
         {
             if (index >= dim)
             {
+                CriarCompensar(index);
                 return 0;
             }
 
             m_compensar[index].Trimestre = trimestre;
-            m_compensar[index].Ano = ano;
+            m_compensar[index].Ano = anoLetivo;
             m_compensar[index].Compensar = horas;
 
             return 1;
         }
-        private int m_qtdCompensar;
+        
 
-        public int ACompensar
+        public int QtdCompensar
         {
             get { return m_qtdCompensar; }
             set { m_qtdCompensar = value; }
         }
 
-        private HorasCompensadas[] m_compensadas = new HorasCompensadas[100];
-
         public int AddCompensadas(int index,DateTime data,DateTime horaIniciar,DateTime horaFinal)
         {
             if (index >= dim)
             {
+                CriarCompensadas(index);
                 return 0;
             }
 
@@ -101,6 +154,7 @@ namespace CompensacaoHoras
         {
             if (index >= dim || Enum.IsDefined(typeof(Disciplina),disciplina) == false)
             {
+                CriarCompensadas(index);
                 return 0;
             }
 
@@ -114,6 +168,7 @@ namespace CompensacaoHoras
         {
             if (index >= dim)
             {
+                CriarCompensadas(index);
                 return 0;
             }
 
@@ -123,9 +178,9 @@ namespace CompensacaoHoras
             return index + 1;
         }
 
-        private int m_qtdCompensadas;
+        
 
-        public int  Compensadas
+        public int  QtdCompensadas
         {
             get { return m_qtdCompensadas; }
             set { m_qtdCompensadas = value; }
