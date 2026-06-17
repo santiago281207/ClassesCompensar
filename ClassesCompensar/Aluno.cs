@@ -47,7 +47,16 @@ namespace CompensacaoHoras
             get { return m_qtdCompensadas; }
         }
 
+        public HorasACompensar GetRegistoCompensar(int index)
+        {
+            return m_compensar[index];
+        }
 
+        public HorasCompensadas GetRegistoCompensado(int index)
+        {
+            return m_compensadas[index];
+        }
+        
         // ADD COMPENSAR
 
         public int AddCompensar(HorasACompensar horas)
@@ -58,9 +67,7 @@ namespace CompensacaoHoras
             return 1;
         }
 
-
         // ADD COMPENSADAS
-
         public bool AddCompensadas(HorasCompensadas horas)
         {
             
