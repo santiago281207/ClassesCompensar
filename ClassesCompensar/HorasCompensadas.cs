@@ -1,62 +1,45 @@
-﻿using System;
+﻿using ClassesCompensar;
+using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace CompensacaoHoras
 {
-    internal class HorasCompensadas : Aluno
+    public class HorasCompensadas : Compensacao
     {
-        private Disciplina m_discip;
-        private int m_trimestre;
-        private int m_anoLetivo;
-        private string m_tipo;
         private DateTime m_data;
-        private DateTime m_horaIniciar;
-        private DateTime m_horaFinal;
-
-        public Disciplina Disciplina
-        { 
-            get { return m_discip; }
-            set { m_discip = value; }
-        }
-
-        public int Trimestre
-        { 
-            get { return m_trimestre; }
-            set { m_trimestre = value; }
-        }
-
-        public int Ano
-        { 
-            get { return m_anoLetivo; }
-            set { m_anoLetivo = value; }
-        }
-
-        public string Tipo
-        { 
-            get { return m_tipo; }
-            set { m_tipo = value; }
-        }
+        private DateTime m_horaInicio;
+        private DateTime m_horaFim;
 
         public DateTime Data
-        { 
+        {
             get { return m_data; }
             set { m_data = value; }
         }
 
-        public DateTime HoraIniciar
-        { 
-            get { return m_horaIniciar; }
-            set { m_horaIniciar = value; }
+        public DateTime HoraInicio
+        {
+            get { return m_horaInicio; }
+            set { m_horaInicio = value; }
         }
 
-        public DateTime HoraFinal
-        { 
-            get { return m_horaFinal; }
-            set { m_horaFinal = value; }
+        public DateTime HoraFim
+        {
+            get { return m_horaFim; }
+            set { m_horaFim = value; }
+        }
+
+        public int DuracaoMinutos()
+        {
+            return (int)(m_horaFim - m_horaInicio).TotalMinutes;
+        }
+
+        public float DuracaoHoras()
+        {
+            return (float)DuracaoMinutos() / 60;
         }
     }
 }

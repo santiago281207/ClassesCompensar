@@ -6,75 +6,68 @@ using System.Threading.Tasks;
 
 namespace CompensacaoHoras
 {
-    public class Registos
+    public class Sistema
     {
-        Aluno[] m_alunos = new Aluno[30];
-
+        private Aluno[] m_alunos = new Aluno[30];
         private int m_qtdAlunos;
-        private int m_dim = 30;
 
-        public string NameAluno(int index)
-        {
-            return m_alunos[index].Nome;
-        }
-        public Aluno AlunoCheck(int indexAluno)
-        {
-            return m_alunos[indexAluno];
-        }
 
-        public int IndexPorNome(string nome)
+        // ADICIONAR ALUNO
+
+        public bool AddAluno(Aluno aluno)
         {
-            for(int i = 0;i < m_qtdAlunos;i++)
-            {
-                if (m_alunos[i].Nome == nome)
-                {
-                    return i;
-                }
-            }
-            return -1;
+            if (ProcurarAluno(aluno.Numero) != null)
+                return false;
+
+            m_alunos[m_qtdAlunos++] = aluno;
+            return true;
         }
 
-        
 
-        public int ExisteCheck(int num,string nome)
+        // PROCURAR ALUNO POR NUMERO
+
+        public Aluno ProcurarAluno(int numero)
         {
-            if (m_qtdAlunos == 0)
-                return 0;
-
             for (int i = 0; i < m_qtdAlunos; i++)
             {
-                if (m_alunos[i] != null && m_alunos[i].Numero == num || m_alunos[i] != null && m_alunos[i].Nome == nome)
-                    return -1;
+                if (m_alunos[i].Numero == numero)
+                    return m_alunos[i];
             }
-
-            return 0;
+            return null;
         }
 
-        public int Add(Aluno aluno)
+
+        // APAGAR ALUNO (SÓ SE NÃO TIVER COMPENSAR)
+
+        public bool ApagarAluno(int numero)
         {
-            if (m_qtdAlunos == m_dim)
-                return 0;
+            for (int i = 0; i < m_qtdAlunos; i++)
+            {
+                if (m_alunos[i].Numero == numero)
+                {
+                    if (m_alunos[i].QtdCompensar > 0)
+                        return false;
 
-            if (ExisteCheck(aluno.Numero,aluno.Nome) == -1)
-                return -1;
+                    for (int j = i; j < m_qtdAlunos - 1; j++)
+                    {
+                        m_alunos[j] = m_alunos[j + 1];
+                    }
 
-            m_alunos[m_qtdAlunos] = aluno;
-            m_qtdAlunos++;
-
-            return 1;
+                    m_qtdAlunos--;
+                    return true;
+                }
+            }
+            return false;
         }
 
-
-        public int Dimensao
-        {
-            get { return m_dim; }
-        }
-
-        public int QuantidadeAlunos
+        public int QtdAlunos
         {
             get { return m_qtdAlunos; }
-            set { m_qtdAlunos = value; }
         }
 
+        public Aluno GetAluno(int i)
+        {
+            return m_alunos[i];
+        }
     }
 }

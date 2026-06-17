@@ -4,12 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CompensacaoHoras
+namespace ClassesCompensar
 {
-    public abstract class Necessidade
+    public enum Disciplina
     {
+        PSI,
+        PT,
+        ING,
+        RC,
+        AC,
+        MAT,
+        SO,
+        TIC,
+        FQ
+    }
 
+    public abstract class Compensacao
+    {
         private Disciplina m_disciplina;
+        private int m_trimestre;
+        private string m_anoLetivo;
+        private string m_tipo;
 
         public Disciplina Disciplina
         {
@@ -17,17 +32,11 @@ namespace CompensacaoHoras
             set { m_disciplina = value; }
         }
 
-
-        private int m_trimestre;
-
         public int Trimestre
         {
             get { return m_trimestre; }
             set { m_trimestre = value; }
         }
-
-
-        private string m_anoLetivo;
 
         public string AnoLetivo
         {
@@ -35,14 +44,10 @@ namespace CompensacaoHoras
             set { m_anoLetivo = value; }
         }
 
-        private string m_tipoCompensacao;
-
-        public string TipoCompensacao
+        public string Tipo
         {
-            get { return m_tipoCompensacao; }
-            set { m_tipoCompensacao = value; }
+            get { return m_tipo; }
+            set { m_tipo = value; }
         }
-
-
     }
 }
